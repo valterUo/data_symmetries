@@ -7,6 +7,8 @@ myenv/
 
 # C extensions
 *.so
+test.ipynb
+test.png
 
 # Distribution / packaging
 .Python
