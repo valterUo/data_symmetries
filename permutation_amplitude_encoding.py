@@ -33,11 +33,11 @@ def process_cycle(cycle):
     res = []
     for _ in range(200):
         if params_shape_two_qubit is None:
-            params_single = np.random.rand(*params_shape_single_qubit)
+            params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
             result = full_circuit(params_single, features)
         else:
-            params_single = np.random.rand(*params_shape_single_qubit)
-            params_two = np.random.rand(*params_shape_two_qubit)
+            params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
+            params_two = np.random.uniform(-np.pi, np.pi, size=params_shape_two_qubit)
             result = full_circuit([params_single, params_two], features)
         res.append(result)
     return np.mean(res)
