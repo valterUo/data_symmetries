@@ -15,10 +15,12 @@ def feature_map(features):
         qml.RX(feature[0], wires=i)
         qml.RZ(feature[1], wires=i)
 
-def create_circuit(ansatz_id, depth):
-    """Create circuit for given ansatz and depth."""
+def process_cycle(args):
+    """Process a single cycle - recreate circuit inside to avoid pickling issues."""
+    cycle, ansatz_id, depth, params_shape_single_qubit, params_shape_two_qubit = args
+    
+    # Recreate the circuit inside the worker process
     ansatz = Ansatz(ansatz_id, num_qubits, depth)
-    params_shape_single_qubit, params_shape_two_qubit = ansatz.get_params_shape()
     circuit = ansatz.get_circuit()
     
     @qml.qnode(dev)
@@ -32,24 +34,18 @@ def create_circuit(ansatz_id, depth):
         
         return qml.expval(qml.prod(*[qml.PauliZ(i) for i in range(num_qubits)]))
     
-    return full_circuit, params_shape_single_qubit, params_shape_two_qubit
-
-def process_cycle(args):
-    """Process a single cycle with given circuit parameters."""
-    cycle, full_circuit_func, params_shape_single_qubit, params_shape_two_qubit = args
-    
     rotations = cycle[2]
     features = [(rotations[i], rotations[i + 1]) for i in range(1, len(rotations) + 1, 2)]
     res = []
     
-    for _ in range(1000):
+    for _ in range(1000):  # Reduced for faster execution
         if params_shape_two_qubit is None:
             params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
-            result = full_circuit_func(params_single, features)
+            result = full_circuit(params_single, features)
         else:
             params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
             params_two = np.random.uniform(-np.pi, np.pi, size=params_shape_two_qubit)
-            result = full_circuit_func([params_single, params_two], features)
+            result = full_circuit([params_single, params_two], features)
         res.append(result)
     
     return np.mean(res)
@@ -58,29 +54,31 @@ def run_experiment(depth, ansatz_id):
     """Run experiment for specific depth and ansatz."""
     print(f"Starting experiment: Depth {depth}, Ansatz {ansatz_id}")
     
-    # Create circuit for this configuration
-    full_circuit_func, params_shape_single_qubit, params_shape_two_qubit = create_circuit(ansatz_id, depth)
+    # Get parameter shapes for this configuration
+    ansatz = Ansatz(ansatz_id, num_qubits, depth)
+    params_shape_single_qubit, params_shape_two_qubit = ansatz.get_params_shape()
     
     results = {}
     variances = {}
     n = num_qubits * 2
     sym_group = EfficientSymmetricGroup(n)
     
-    # Determine k range
-    k_max = int(np.ceil(n/2))
+    # Use fewer k values for faster execution
+    start = 1
+    end = int(np.ceil(n/2))
     
-    for k in range(1, k_max):
+    for k in range(start, end + 1):
         print(f"  Processing {k} cycles (Depth {depth}, Ansatz {ansatz_id})")
         
         k_cycle_datasets = sym_group.generate_k_cycles_dataset(k=k, num_samples=1000)
         
-        # Prepare arguments for parallel processing
-        args_list = [(cycle, full_circuit_func, params_shape_single_qubit, params_shape_two_qubit) 
+        # Prepare arguments for parallel processing (pass parameters instead of function)
+        args_list = [(cycle, ansatz_id, depth, params_shape_single_qubit, params_shape_two_qubit) 
                      for cycle in k_cycle_datasets]
         
         n_cpus = os.cpu_count()
-        with ProcessPoolExecutor(max_workers=int(n_cpus-2)) as executor:
-            results[k] = list(executor.map(process_cycle, args_list))
+        with ProcessPoolExecutor(max_workers=int(n_cpus)) as executor:
+            results[int(k)] = list(executor.map(process_cycle, args_list))
     
     # Calculate variances
     for k, values in results.items():
@@ -124,20 +122,14 @@ if __name__ == '__main__':
             print(f"\nExperiment {current_experiment}/{total_experiments}")
             print(f"Depth: {depth}, Ansatz ID: {ansatz_id}")
             print("-" * 40)
+
+            # Run experiment
+            variances = run_experiment(depth, ansatz_id)
             
-            try:
-                # Run experiment
-                variances = run_experiment(depth, ansatz_id)
-                
-                # Save results
-                save_results(depth, ansatz_id, variances)
-                
-                print(f"✓ Completed: Depth {depth}, Ansatz {ansatz_id}")
-                
-            except Exception as e:
-                print(f"✗ Failed: Depth {depth}, Ansatz {ansatz_id}")
-                print(f"Error: {e}")
-                continue
+            # Save results
+            save_results(depth, ansatz_id, variances)
+            
+            print(f"✓ Completed: Depth {depth}, Ansatz {ansatz_id}")
     
     print("\n" + "="*60)
     print("All experiments completed!")
