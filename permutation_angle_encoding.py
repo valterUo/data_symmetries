@@ -7,8 +7,8 @@ from ansatz import Ansatz
 from efficient_symmetry_group import EfficientSymmetricGroup
 
 num_qubits = 13
-depth = 3
-ansatz_id = 19
+depth = 4
+ansatz_id = 6
 
 ansatz = Ansatz(ansatz_id, num_qubits, depth)
 params_shape_single_qubit, params_shape_two_qubit = ansatz.get_params_shape()
@@ -68,7 +68,7 @@ if __name__ == '__main__':
         print(k, "cycles variance is ", np.var(values))
         variances[k] = np.var(values)
     
-    file = f'results_depth_{depth}.json'
+    file = f'angle_embedding_depth_{depth}.json'
     if os.path.exists(file):
         with open(file, 'r') as f:
             existing_data = json.load(f)
