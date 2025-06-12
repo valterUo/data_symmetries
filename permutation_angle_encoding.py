@@ -1,6 +1,6 @@
 import json
 import os
-import numpy as np
+from pennylane import numpy as np
 import pennylane as qml
 from concurrent.futures import ProcessPoolExecutor
 from ansatz import Ansatz
@@ -107,8 +107,8 @@ def save_results(depth, ansatz_id, variances):
 
 if __name__ == '__main__':
     # Define experiment parameters
-    depths = range(1, 5)      # Depths 1-4
-    ansatz_ids = range(1, 20) # Ansatz IDs 1-19
+    depths = range(1, 2)      # Depths 1-4
+    ansatz_ids = range(1, 2) # Ansatz IDs 1-19
     
     total_experiments = len(depths) * len(ansatz_ids)
     current_experiment = 0
