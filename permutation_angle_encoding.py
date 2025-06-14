@@ -8,7 +8,7 @@ from efficient_symmetry_group import EfficientSymmetricGroup
 
 num_qubits = 13
 
-dev = qml.device("lightning.qubit", wires=num_qubits)
+dev = qml.device("default.qubit", wires=num_qubits)
 
 def feature_map(features):
     for i, feature in enumerate(features):
@@ -38,7 +38,7 @@ def process_cycle(args):
     features = [(rotations[i], rotations[i + 1]) for i in range(1, len(rotations) + 1, 2)]
     res = []
     
-    for _ in range(1000):  # Reduced for faster execution
+    for _ in range(500):  # Reduced for faster execution
         if params_shape_two_qubit is None:
             params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
             result = full_circuit(params_single, features)
@@ -70,14 +70,31 @@ def run_experiment(depth, ansatz_id):
     for k in range(start, end + 1):
         print(f"  Processing {k} cycles (Depth {depth}, Ansatz {ansatz_id})")
         
-        k_cycle_datasets = sym_group.generate_k_cycles_dataset(k=k, num_samples=1000)
+        k_cycle_datasets = sym_group.generate_k_cycles_dataset(k=k, num_samples=500)
         
         # Prepare arguments for parallel processing (pass parameters instead of function)
         args_list = [(cycle, ansatz_id, depth, params_shape_single_qubit, params_shape_two_qubit) 
                      for cycle in k_cycle_datasets]
         
-        n_cpus = os.cpu_count()
-        with ProcessPoolExecutor(max_workers=int(n_cpus)) as executor:
+        #n_cpus = 50
+
+        # Calculate optimal distribution
+        num_cycles = len(args_list)
+        total_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', 50))
+
+        # For quantum circuits, balanced approach often works best
+        n_workers = min(num_cycles, total_cpus)  # 25 workers max
+        threads_per_worker = total_cpus // n_workers  # 2 threads each
+
+        print(f"Quantum simulation: {n_workers} workers × {threads_per_worker} threads on {total_cpus}")
+        print(f"Processing {num_cycles} cycles for k={k}")
+
+        # CRITICAL: Set threading limits for quantum circuit simulation
+        os.environ['OMP_NUM_THREADS'] = str(threads_per_worker)
+        os.environ['MKL_NUM_THREADS'] = str(threads_per_worker)
+        os.environ['NUMBA_NUM_THREADS'] = str(threads_per_worker)
+
+        with ProcessPoolExecutor(max_workers=n_workers) as executor:
             results[int(k)] = list(executor.map(process_cycle, args_list))
     
     # Calculate variances
@@ -107,8 +124,8 @@ def save_results(depth, ansatz_id, variances):
 
 if __name__ == '__main__':
     # Define experiment parameters
-    depths = range(1, 2)      # Depths 1-4
-    ansatz_ids = range(1, 2) # Ansatz IDs 1-19
+    depths = range(4, 5)      # Depths 1-4
+    ansatz_ids = range(7, 20) # Ansatz IDs 1-19
     
     total_experiments = len(depths) * len(ansatz_ids)
     current_experiment = 0

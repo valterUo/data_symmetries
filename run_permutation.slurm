@@ -1,18 +1,16 @@
 #!/bin/bash
 #SBATCH --job-name=permutation_angle_encoding
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=100
+#SBATCH --cpus-per-task=50
 #SBATCH --time=24:00:00
-#SBATCH --mem=30G
-#SBATCH --partition=cpu
+#SBATCH --mem=20G
 #SBATCH --output=permutation_angle_%j.out
 #SBATCH --error=permutation_angle_%j.err
 
 # Set up environment variables for better performance
-export OMP_NUM_THREADS=100
-export MKL_NUM_THREADS=100
-export NUMBA_NUM_THREADS=100
+#export OMP_NUM_THREADS=100
+#export MKL_NUM_THREADS=100
+#export NUMBA_NUM_THREADS=100
 
 # Define virtual environment path
 VENV_PATH="./venv_permutation"
@@ -42,7 +40,7 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Node: $SLURM_NODELIST"
 echo "Start time: $(date)"
 
-python permutation_angle_encoding.py
+python3 permutation_angle_encoding.py
 
 echo "End time: $(date)"
 echo "Job completed"
