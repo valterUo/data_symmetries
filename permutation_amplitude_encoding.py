@@ -29,11 +29,10 @@ def process_cycle(args):
         
         return qml.expval(qml.prod(*[qml.PauliZ(i) for i in range(num_qubits)]))
     
-    rotations = cycle[2]
-    features = [(rotations[i], rotations[i + 1]) for i in range(1, len(rotations) + 1, 2)]
+    features = list(cycle[2])
     res = []
     
-    for _ in range(500):  # Reduced for faster execution
+    for _ in range(500):
         if params_shape_two_qubit is None:
             params_single = np.random.uniform(-np.pi, np.pi, size=params_shape_single_qubit)
             result = full_circuit(params_single, features)
@@ -119,7 +118,7 @@ def save_results(depth, ansatz_id, variances):
 
 if __name__ == '__main__':
     # Define experiment parameters
-    depths = range(1, 5)      # Depths 1-4
+    depths = range(1, 2)      # Depths 1-4
     ansatz_ids = range(1, 20) # Ansatz IDs 1-19
     
     total_experiments = len(depths) * len(ansatz_ids)

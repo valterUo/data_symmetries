@@ -40,7 +40,7 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Node: $SLURM_NODELIST"
 echo "Start time: $(date)"
 
-python3 permutation_angle_encoding.py
+python3 permutation_amplitude_encoding.py
 
 echo "End time: $(date)"
 echo "Job completed"
