@@ -4,13 +4,13 @@
 #SBATCH --cpus-per-task=50
 #SBATCH --time=24:00:00
 #SBATCH --mem=20G
-#SBATCH --output=permutation_angle_%j.out
-#SBATCH --error=permutation_angle_%j.err
+#SBATCH --output=amplitude_%j.out
+#SBATCH --error=amplitude_%j.err
 
 # Set up environment variables for better performance
-#export OMP_NUM_THREADS=100
-#export MKL_NUM_THREADS=100
-#export NUMBA_NUM_THREADS=100
+#export OMP_NUM_THREADS=50
+#export MKL_NUM_THREADS=50
+#export NUMBA_NUM_THREADS=50
 
 # Define virtual environment path
 VENV_PATH="./venv_permutation"

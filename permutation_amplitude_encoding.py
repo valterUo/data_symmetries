@@ -118,8 +118,8 @@ def save_results(depth, ansatz_id, variances):
 
 if __name__ == '__main__':
     # Define experiment parameters
-    depths = range(1, 2)      # Depths 1-4
-    ansatz_ids = range(1, 20) # Ansatz IDs 1-19
+    depths = range(2, 3)      # Depths 1-4
+    ansatz_ids = range(11, 14) # Ansatz IDs 1-19
     
     total_experiments = len(depths) * len(ansatz_ids)
     current_experiment = 0

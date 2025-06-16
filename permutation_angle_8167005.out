@@ -1,0 +1,545 @@
+Virtual environment already exists at ./venv_permutation
+Virtual environment activated
+Starting permutation angle encoding experiment with 100 CPUs
+Job ID: 8167005
+Node: milan14
+Start time: Sun Jun 15 12:13:50 EEST 2025
+Starting 9 experiments...
+============================================================
+
+Experiment 1/9
+Depth: 3, Ansatz ID: 11
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 11
+  Processing 1 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 11)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.8385313046883072e-07
+  2 cycles variance: 1.6864482709136298e-07
+  3 cycles variance: 1.9286974214392956e-07
+  4 cycles variance: 1.7120162329743812e-07
+  5 cycles variance: 2.1298041550868406e-07
+  6 cycles variance: 1.7997691847435006e-07
+  7 cycles variance: 1.8950266754865245e-07
+  8 cycles variance: 1.6924108205479706e-07
+  9 cycles variance: 1.9095981403579778e-07
+  10 cycles variance: 1.8030541609299678e-07
+  11 cycles variance: 2.0262497648627237e-07
+  12 cycles variance: 2.0668569654885793e-07
+  13 cycles variance: 2.2689472666180043e-07
+Results saved for Depth 3, Ansatz 11
+✓ Completed: Depth 3, Ansatz 11
+
+Experiment 2/9
+Depth: 3, Ansatz ID: 12
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 12
+  Processing 1 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 12)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.9887856208096154e-07
+  2 cycles variance: 1.8281033576084457e-07
+  3 cycles variance: 1.7037717655817366e-07
+  4 cycles variance: 1.8629311464350467e-07
+  5 cycles variance: 1.822569891179338e-07
+  6 cycles variance: 1.7812587800842528e-07
+  7 cycles variance: 1.7887116059995348e-07
+  8 cycles variance: 1.9094224259142159e-07
+  9 cycles variance: 1.8246311113204703e-07
+  10 cycles variance: 1.954887015164358e-07
+  11 cycles variance: 1.7607283827670289e-07
+  12 cycles variance: 1.835655925493232e-07
+  13 cycles variance: 1.8851193381835983e-07
+Results saved for Depth 3, Ansatz 12
+✓ Completed: Depth 3, Ansatz 12
+
+Experiment 3/9
+Depth: 3, Ansatz ID: 13
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 13
+  Processing 1 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 13)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.0379074141551583e-07
+  2 cycles variance: 1.466617945312855e-07
+  3 cycles variance: 1.536518129520978e-07
+  4 cycles variance: 1.6301371583956855e-07
+  5 cycles variance: 1.4264153022518083e-07
+  6 cycles variance: 1.5017374389687946e-07
+  7 cycles variance: 1.4415996320969157e-07
+  8 cycles variance: 1.5566883327895386e-07
+  9 cycles variance: 1.397851163322822e-07
+  10 cycles variance: 1.542569815009619e-07
+  11 cycles variance: 1.6052982119291462e-07
+  12 cycles variance: 1.513189578540063e-07
+  13 cycles variance: 1.5114296397139887e-07
+Results saved for Depth 3, Ansatz 13
+✓ Completed: Depth 3, Ansatz 13
+
+Experiment 4/9
+Depth: 3, Ansatz ID: 14
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 14
+  Processing 1 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 14)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.6876470409632893e-07
+  2 cycles variance: 1.8266289392311332e-07
+  3 cycles variance: 1.8190037009396293e-07
+  4 cycles variance: 1.8461956320700005e-07
+  5 cycles variance: 2.0177447933064178e-07
+  6 cycles variance: 1.958663676832247e-07
+  7 cycles variance: 1.862869031721834e-07
+  8 cycles variance: 2.1334862470368686e-07
+  9 cycles variance: 2.040125753386669e-07
+  10 cycles variance: 1.9976877542242777e-07
+  11 cycles variance: 1.987581475756884e-07
+  12 cycles variance: 2.0187161097013305e-07
+  13 cycles variance: 1.970211542856516e-07
+Results saved for Depth 3, Ansatz 14
+✓ Completed: Depth 3, Ansatz 14
+
+Experiment 5/9
+Depth: 3, Ansatz ID: 15
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 15
+  Processing 1 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 15)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 3.992950165576951e-07
+  2 cycles variance: 3.1830436117169107e-07
+  3 cycles variance: 3.06223683845738e-07
+  4 cycles variance: 2.872476278880102e-07
+  5 cycles variance: 3.0783938662850075e-07
+  6 cycles variance: 2.9209259480311985e-07
+  7 cycles variance: 2.8436169535806216e-07
+  8 cycles variance: 2.890671988353882e-07
+  9 cycles variance: 2.780444166474544e-07
+  10 cycles variance: 2.571932807028179e-07
+  11 cycles variance: 2.5748682316565447e-07
+  12 cycles variance: 2.79971096930596e-07
+  13 cycles variance: 3.047717054229236e-07
+Results saved for Depth 3, Ansatz 15
+✓ Completed: Depth 3, Ansatz 15
+
+Experiment 6/9
+Depth: 3, Ansatz ID: 16
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 16
+  Processing 1 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 16)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 7.756193003800072e-08
+  2 cycles variance: 7.287768261997806e-08
+  3 cycles variance: 7.407473138655535e-08
+  4 cycles variance: 7.441416966588496e-08
+  5 cycles variance: 6.595050286655043e-08
+  6 cycles variance: 6.718015138049366e-08
+  7 cycles variance: 7.103898977894949e-08
+  8 cycles variance: 6.858806236142763e-08
+  9 cycles variance: 7.72873143711488e-08
+  10 cycles variance: 6.761564749980747e-08
+  11 cycles variance: 7.095766391230271e-08
+  12 cycles variance: 6.548134081242428e-08
+  13 cycles variance: 7.194808386315139e-08
+Results saved for Depth 3, Ansatz 16
+✓ Completed: Depth 3, Ansatz 16
+
+Experiment 7/9
+Depth: 3, Ansatz ID: 17
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 17
+  Processing 1 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 17)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.633580305911483e-07
+  2 cycles variance: 1.7436164179007295e-07
+  3 cycles variance: 1.7193481916242623e-07
+  4 cycles variance: 1.7463533781599438e-07
+  5 cycles variance: 1.7823190893493839e-07
+  6 cycles variance: 1.7298737894960817e-07
+  7 cycles variance: 1.7799207912969675e-07
+  8 cycles variance: 1.749054481490278e-07
+  9 cycles variance: 1.7059211239229612e-07
+  10 cycles variance: 1.6337066439655837e-07
+  11 cycles variance: 1.7458064265352326e-07
+  12 cycles variance: 1.6403485493937825e-07
+  13 cycles variance: 1.6469215616360207e-07
+Results saved for Depth 3, Ansatz 17
+✓ Completed: Depth 3, Ansatz 17
+
+Experiment 8/9
+Depth: 3, Ansatz ID: 18
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 18
+  Processing 1 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 18)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 1.0064553503547508e-07
+  2 cycles variance: 9.271454333629554e-08
+  3 cycles variance: 8.949203999086453e-08
+  4 cycles variance: 8.349735206206716e-08
+  5 cycles variance: 8.810267749378528e-08
+  6 cycles variance: 7.394946105689657e-08
+  7 cycles variance: 8.07637634617908e-08
+  8 cycles variance: 8.27870412310789e-08
+  9 cycles variance: 8.591191700414063e-08
+  10 cycles variance: 7.605441613596327e-08
+  11 cycles variance: 8.534642179989325e-08
+  12 cycles variance: 8.914637835977546e-08
+  13 cycles variance: 8.120026359385434e-08
+Results saved for Depth 3, Ansatz 18
+✓ Completed: Depth 3, Ansatz 18
+
+Experiment 9/9
+Depth: 3, Ansatz ID: 19
+----------------------------------------
+Starting experiment: Depth 3, Ansatz 19
+  Processing 1 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=1
+  Processing 2 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=2
+  Processing 3 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=3
+  Processing 4 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=4
+  Processing 5 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=5
+  Processing 6 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=6
+  Processing 7 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=7
+  Processing 8 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=8
+  Processing 9 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=9
+  Processing 10 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=10
+  Processing 11 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=11
+  Processing 12 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=12
+  Processing 13 cycles (Depth 3, Ansatz 19)
+Quantum simulation: 50 workers × 1 threads on 50
+Processing 500 cycles for k=13
+  1 cycles variance: 4.5882764652267886e-07
+  2 cycles variance: 4.5877397660308804e-07
+  3 cycles variance: 4.847620036001022e-07
+  4 cycles variance: 4.4546999868583355e-07
+  5 cycles variance: 4.5047002002710373e-07
+  6 cycles variance: 4.388804950150838e-07
+  7 cycles variance: 5.592532379387716e-07
+  8 cycles variance: 4.81391607419423e-07
+  9 cycles variance: 4.793269126993308e-07
+  10 cycles variance: 4.713943375858628e-07
+  11 cycles variance: 4.2713876166240703e-07
+  12 cycles variance: 4.5393646116459235e-07
+  13 cycles variance: 4.341221995916197e-07
+Results saved for Depth 3, Ansatz 19
+✓ Completed: Depth 3, Ansatz 19
+
+============================================================
+All experiments completed!
+Results saved in files: angle_embedding_depth_1.json to angle_embedding_depth_4.json
+End time: Sun Jun 15 23:58:56 EEST 2025
+Job completed
