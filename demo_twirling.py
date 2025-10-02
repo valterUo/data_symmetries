@@ -6,7 +6,6 @@ from induced_representation import (
     derive_unitaries_from_equivariance
 )
 from twirling import (
-    extract_generators_from_circuit,
     extract_generators_from_ansatz_instance,
     extract_generator_from_single_operation,
     apply_twirling,
