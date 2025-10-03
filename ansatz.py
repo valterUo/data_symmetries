@@ -65,5 +65,8 @@ class Ansatz:
     
     def get_params_shape(self):
         return self.ansatz.get_params_shape()
+    
+    def get_ansatz(self):
+        return self.ansatz
 
         

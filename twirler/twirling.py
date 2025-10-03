@@ -34,9 +34,9 @@ def apply_twirling_to_generators(
     """
     twirled_generators = {}
     
-    for gen_idx, (gen_observable, wires, gate_name) in enumerate(generators):
+    for gen_idx, (gen_observable, wires, gate_name, theta) in enumerate(generators):
         
-        op = qml.Hermitian(gen_observable.matrix(), wires=wires)
+        op = qml.Hermitian(gen_observable, wires=wires)
         G_full = qml.matrix(op, wire_order=range(full_n_qubits))
 
         # Apply twirling: G̃_s = U_s^† @ G @ U_s for each group element
@@ -54,7 +54,8 @@ def apply_twirling_to_generators(
             'twirled': twirled_gen_list,
             'averaged': np.mean(twirled_gen_list, axis=0),  # Average over group
             'gate_name': gate_name,
-            'wires': wires
+            'wires': wires,
+            'theta': theta
         }
     
     return twirled_generators

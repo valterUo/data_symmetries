@@ -1,6 +1,40 @@
 import numpy as np
 from typing import Callable, Tuple
-from symmetry_groups import SymmetryGroup
+from twirler.symmetry_groups import SymmetryGroup
+
+def build_qubit_permutation_unitary(perm: tuple[int, ...]) -> np.ndarray:
+    """
+    Return the 2^n x 2^n unitary implementing the qubit permutation 'perm',
+    where perm[i] = target position of qubit i.
+    Maps |b_0 b_1 ... b_{n-1}> -> |b_{p^{-1}(0)} b_{p^{-1}(1)} ...>.
+    We define action so that bit originally at position i moves to position perm[i].
+    """
+    n = len(perm)
+    dim = 2 ** n
+    U = np.zeros((dim, dim), dtype=complex)
+    # Precompute inverse permutation to map basis indices cleanly
+    inv = [0]*n
+    for i, p in enumerate(perm):
+        inv[p] = i
+    for basis_in in range(dim):
+        bits = [(basis_in >> k) & 1 for k in range(n)]
+        # Reorder bits according to inverse so that new position j gets old bit from inv[j]
+        permuted_bits = [bits[inv[j]] for j in range(n)]
+        basis_out = sum(permuted_bits[k] << k for k in range(n))
+        U[basis_out, basis_in] = 1.0
+    return U
+
+def derive_unitaries_angle_embedding_analytic(group) -> dict[int, np.ndarray]:
+    """
+    Analytic induced representation for permutation group acting on indices of AngleEmbedding.
+    Assumes group.elements is an iterable of permutations as tuples (p0,p1,...,p_{n-1}),
+    where element maps index i -> perm[i].
+    """
+    unitaries = {}
+    for idx, perm in enumerate(group.elements):
+        U_s = build_qubit_permutation_unitary(perm)
+        unitaries[idx] = U_s
+    return unitaries
 
 # In induced_representation.py, modify solve_for_induced_unitary_optimization:
 
