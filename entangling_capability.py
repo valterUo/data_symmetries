@@ -66,7 +66,7 @@ for depth in range(1, 6):
         params = qiskit_circuit.parameters
         circuit_descriptor = CircuitDescriptor(qiskit_circuit, params)
         exp = EntanglementCapability(circuit_descriptor, samples=5000)
-        original_entanglement = exp.entanglement()
+        original_entanglement = exp.entanglement_capability()
         final_results[n_qubits][depth][ansatz_id]["original"] = original_entanglement
 
         ansatz_generators = get_ansatz_generators(super_ansatz.get_ansatz())
@@ -114,9 +114,9 @@ for depth in range(1, 6):
                 params = twirled_circuit.parameters
                 circuit_descriptor = CircuitDescriptor(twirled_circuit, params)
                 exp = EntanglementCapability(circuit_descriptor, samples=5000)
-                twirled_entanglement = exp.entanglement()
+                twirled_entanglement = exp.entanglement_capability()
                 print(f"    Twirled entanglement (k={k}): {twirled_entanglement:.4f}")
                 final_results[n_qubits][depth][ansatz_id]["twirled"][k].append(twirled_entanglement)
 
 with open(f"entanglement_results_{n_qubits}.json", "w") as f:
-    json.dump(final_results, f)
+    json.dump(final_results, f, indent=4)
