@@ -1,19 +1,18 @@
 #!/bin/bash
-#SBATCH --job-name=symmetry            # Job name (shown in squeue)
-#SBATCH --output=slurm-%j.out          # Stdout/stderr log file (%j = job ID)
-#SBATCH --cpus-per-task=100            # Give this job 100 CPU cores
-#SBATCH --time=48:00:00                # Max runtime (hh:mm:ss)
-#SBATCH --mem=25G                      # Total memory requested
-#SBATCH --partition=compute            # (optional) specify a partition/queue
+#SBATCH --job-name=entanglement_sweep
+#SBATCH --output=logs/slurm-%A_%a.out   # %A = master job ID, %a = array index
+#SBATCH --array=1-95                    # 5 depths × 19 ansatz IDs = 95 jobs
+#SBATCH --cpus-per-task=16               # CPUs per run (tweak as needed)
+#SBATCH --mem=4G
+#SBATCH --time=24:00:00
 
-# --- Environment setup ---
-# Load modules if needed (depends on your cluster)
-# module load python/3.10
+# Activate your environment
+source ~/myenv/bin/activate   # or: conda activate myenv
 
-# Activate your Python environment
-source ~/myenv/bin/activate            # or: conda activate myenv
+# --- Compute parameters from array index ---
+# depth ∈ [1,5], ansatz_id ∈ [1,19]
+DEPTH=$(( ($SLURM_ARRAY_TASK_ID - 1) % 5 + 1 ))
+ANSATZ_ID=$(( ($SLURM_ARRAY_TASK_ID - 1) % 19 + 1 ))
 
-# --- Run your script ---
-echo "Starting job at $(date)"
-srun python your_script.py
-echo "Job finished at $(date)"
+echo "Running job with depth=$DEPTH, ansatz_id=$ANSATZ_ID"
+srun python entangling_capability.py --depth "$DEPTH" --ansatz_id "$ANSATZ_ID"
