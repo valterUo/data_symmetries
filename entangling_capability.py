@@ -3,7 +3,7 @@ import json
 import argparse
 from tqdm import tqdm
 from ansatz import Ansatz
-from utils import pennylane_to_qiskit
+from utils import find_original_param, pennylane_to_qiskit
 import pennylane as qml
 
 from qleet.analyzers.entanglement import EntanglementCapability
@@ -79,28 +79,7 @@ def main(depth, ansatz_id, n_qubits=4):
                 twirled_elem = twirled_generators[i]
                 if twirled_elem["gate_name"] == op_name and twirled_elem["wires"] == op_wires:
                     H = twirled_elem['averaged']
-                    original_param = None
-                    for instr, qargs, cargs in qiskit_circuit.data:
-                        occurrence_idx = sum(
-                            1
-                            for j in range(i + 1)
-                            if ansatz_generators[j][2] == op_name and ansatz_generators[j][1] == op_wires
-                        )
-                        seen = 0
-                        for _instr, _qargs, _cargs in qiskit_circuit.data:
-                            if _instr.name.lower() == op_name.lower() and [q._index for q in _qargs] == list(op_wires) and len(_instr.params) > 0:
-                                seen += 1
-                                if seen == occurrence_idx:
-                                    original_param = _instr.params[0]
-                                    break
-                        if original_param is not None:
-                            break
-
-                    if original_param is None:
-                        param = theta
-                    else:
-                        param = original_param
-
+                    param = find_original_param(qiskit_circuit, ansatz_generators, i, op_name, op_wires, theta)
                     pauli_op = SparsePauliOp.from_operator(H)
                     evo_gate = PauliEvolutionGate(pauli_op, time=param)
                     twirled_circuit.append(evo_gate, range(n_qubits))
