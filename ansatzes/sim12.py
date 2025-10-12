@@ -20,9 +20,9 @@ class Sim12:
 
                 for i in range(1, self.num_qubits - 1, 2):
                     qml.RY(single_qubit_params[d][i][2], wires=i)
-                    qml.RZ(single_qubit_params[d][i][2], wires=i)
+                    qml.RZ(single_qubit_params[d][i][3], wires=i)
                     if i != self.num_qubits - 2:
-                        qml.RY(single_qubit_params[d][i + 1][3], wires=i + 1)
+                        qml.RY(single_qubit_params[d][i + 1][2], wires=i + 1)
                         qml.RZ(single_qubit_params[d][i + 1][3], wires=i + 1)
                     qml.CZ(wires=[i + 1, i])
 

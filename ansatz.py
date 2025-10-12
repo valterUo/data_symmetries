@@ -1,3 +1,5 @@
+import numpy as np
+import pennylane as qml
 from ansatzes.sim1 import Sim1
 from ansatzes.sim2 import Sim2
 from ansatzes.sim3 import Sim3
@@ -21,6 +23,8 @@ from ansatzes.sim19 import Sim19
 class Ansatz:
 
     def __init__(self, id, num_qubits, depth):
+        self.num_qubits = num_qubits
+        self.depth = depth
         if id == 1:
             self.ansatz = Sim1(num_qubits, depth)
         elif id == 2:
@@ -68,5 +72,26 @@ class Ansatz:
     
     def get_ansatz(self):
         return self.ansatz
+    
+    def get_QNode(self):
+        param_shape = self.get_params_shape()
+        ansatz_function = self.get_circuit()
+        if param_shape[1] is not None:
+            params1 = np.random.uniform(0, 2 * np.pi, param_shape[0])
+            params2 = np.random.uniform(0, 2 * np.pi, param_shape[1])
+            params = [params1, params2]
+            @qml.qnode(qml.device("default.qubit", wires=self.num_qubits))
+            def circuit(params1, params2):
+                ansatz_function(params1, params2)
+                return qml.expval(qml.PauliZ(0))
+        else:
+            params1 = np.random.uniform(0, 2 * np.pi, param_shape[0])
+            params = [params1]
+            @qml.qnode(qml.device("default.qubit", wires=self.num_qubits))
+            def circuit(params1):
+                ansatz_function(params1)
+                return qml.expval(qml.PauliZ(0))
+        
+        return circuit, params
 
         

@@ -9,6 +9,10 @@ myenv/
 *.so
 test.ipynb
 test.png
+print_ansatzes.ipynb
+
+subgroups_8.json
+subgroups_9.json
 
 # Distribution / packaging
 .Python

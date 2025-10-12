@@ -17,7 +17,7 @@ class Sim5:
                 for control_qubit in reversed(range(self.num_qubits)):
                     for target_qubit in reversed(range(self.num_qubits)):
                         if control_qubit != target_qubit:
-                            qml.CRZ(two_qubit_params[d][target_qubit][0], 
+                            qml.CRZ(two_qubit_params[d][control_qubit][target_qubit], 
                                     wires=[control_qubit, target_qubit])
                 
                 for i in range(self.num_qubits):
@@ -27,4 +27,4 @@ class Sim5:
         return circuit
 
     def get_params_shape(self):
-        return (self.depth, self.num_qubits, 4), (self.depth, self.num_qubits, 1)
+        return (self.depth, self.num_qubits, 4), (self.depth, self.num_qubits, self.num_qubits)

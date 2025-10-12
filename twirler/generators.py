@@ -76,7 +76,7 @@ def get_ansatz_generators(ansatz_instance):
                 gen = qml.generator(op, format="observable")
                 # In PennyLane convention U(θ)=exp(-i θ/2 G) with current θ=op.parameters[0]
                 theta = op.parameters[0] if op.parameters else None
-                results.append((gen.matrix(), op.wires, op.name, theta))
+                results.append((gen.matrix(), op.wires, op.name, theta, True))
             except Exception as e:
                 print(f"Skipping parametric gate {op.name}: {e}")
             continue
@@ -89,7 +89,7 @@ def get_ansatz_generators(ansatz_instance):
                     gen_obs, theta = fn()
                 else:
                     gen_obs, theta = fn()
-                results.append((gen_obs, op.wires, op.name, theta))
+                results.append((gen_obs, op.wires, op.name, theta, False))
             except Exception as e:
                 print(f"Manual generator failed for {op.name}: {e}")
         # else ignore silently

@@ -1,4 +1,3 @@
-from sage.all import SymmetricGroup
 import json
 
 def subgroup_generators_by_order(n, zero_indexed=False, max_size=None):
@@ -39,11 +38,51 @@ def subgroup_generators_by_order(n, zero_indexed=False, max_size=None):
 
     return result
 
+def subgroups_as_permutations(n, zero_indexed=False, max_size=None):
+    """
+    Return a dict mapping subgroup order -> list of subgroups,
+    where each subgroup is represented by a list of all its elements
+    (each element is a permutation image list [g(1),...,g(n)]).
+
+    Parameters
+    ----------
+    n : int
+        Symmetric group size (S_n).
+    zero_indexed : bool
+        If True, outputs permutations in 0-based form.
+    max_size : int or None
+        Maximum number of subgroups to keep per order.
+        If None, include all.
+    """
+    G = SymmetricGroup(n)
+    result = {}
+
+    for H in G.subgroups():
+        order = int(H.order())
+
+        # Enforce optional subgroup count cap per order
+        if max_size is not None and len(result.get(order, [])) >= max_size:
+            continue
+
+        subgroup_perms = []
+        for g in H:
+            # Build the image list [g(1), g(2), ..., g(n)]
+            perm = [int(g(i)) for i in range(1, n + 1)]
+            #print(perm)
+            if zero_indexed:
+                perm = [int(p - 1) for p in perm]
+            subgroup_perms.append(perm)
+
+        result.setdefault(order, []).append(subgroup_perms)
+
+    return result
+
+
 
 # Example: S4
-for i in range(4, 5):
+for i in range(3, 10):
     
-    subs = subgroup_generators_by_order(i, max_size = 30)
+    subs = subgroups_as_permutations(i, zero_indexed = True, max_size = 30)
 
-    with open(f"subgroup_generators_{i}.json", "w") as f:
+    with open(f"subgroups_{i}.json", "w") as f:
         json.dump(subs, f, indent=4)

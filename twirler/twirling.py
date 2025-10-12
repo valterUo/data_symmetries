@@ -1,12 +1,10 @@
 import numpy as np
 from typing import Dict, List, Tuple
 import pennylane as qml
-from scipy.sparse import csr_matrix
 
 def apply_twirling_to_generators(
     unitaries: Dict[int, np.ndarray],
     generators: List[Tuple],
-    group_size: int,
     full_n_qubits: int
 ) -> Dict[int, List[np.ndarray]]:
     """
@@ -34,14 +32,14 @@ def apply_twirling_to_generators(
     """
     twirled_generators = {}
     
-    for gen_idx, (gen_observable, wires, gate_name, theta) in enumerate(generators):
+    for gen_idx, (gen_observable, wires, gate_name, theta, parametrized) in enumerate(generators):
         
         op = qml.Hermitian(gen_observable, wires=wires)
         G_full = qml.matrix(op, wire_order=range(full_n_qubits))
 
         # Apply twirling: G̃_s = U_s^† @ G @ U_s for each group element
         twirled_gen_list = []
-        for s in range(group_size):
+        for s in unitaries:
             U_s = unitaries[s]
             U_s_dag = U_s.conj().T
             
@@ -49,13 +47,18 @@ def apply_twirling_to_generators(
             G_twirled = U_s @ G_full @ U_s_dag
             twirled_gen_list.append(G_twirled)
         
+        if len(unitaries) == 1:
+            assert np.allclose(twirled_gen_list[0], G_full), "Single element group should not change generator"
+
         twirled_generators[gen_idx] = {
             'original': G_full,
             'twirled': twirled_gen_list,
             'averaged': np.mean(twirled_gen_list, axis=0),  # Average over group
             'gate_name': gate_name,
             'wires': wires,
-            'theta': theta
+            'theta': theta,
+            'observable': gen_observable,
+            'parametrized': parametrized
         }
     
     return twirled_generators
