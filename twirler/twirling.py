@@ -32,9 +32,10 @@ def apply_twirling_to_generators(
     """
     twirled_generators = {}
     
-    for gen_idx, (gen_observable, wires, gate_name, theta, parametrized) in enumerate(generators):
+    for gen_idx, (gen_observable, wires, gate_name, theta, is_generator) in enumerate(generators):
         
         op = qml.Hermitian(gen_observable, wires=wires)
+        assert op.is_hermitian, "Generator observable must be Hermitian"
         G_full = qml.matrix(op, wire_order=range(full_n_qubits))
 
         # Apply twirling: G̃_s = U_s^† @ G @ U_s for each group element
@@ -58,7 +59,7 @@ def apply_twirling_to_generators(
             'wires': wires,
             'theta': theta,
             'observable': gen_observable,
-            'parametrized': parametrized
+            'is_generator': is_generator
         }
     
     return twirled_generators

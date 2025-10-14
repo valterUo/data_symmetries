@@ -1,41 +1,38 @@
 import pennylane as qml
 import numpy as np
-
+from qiskit.quantum_info import SparsePauliOp
 
 def _hadamard_generator():
-    X = np.array([[0,1],[1,0]])
-    Z = np.array([[1,0],[0,-1]])
-    G = (X + Z)/np.sqrt(2)
-    theta = np.pi
-    return G, theta
+    # H = (1/√2) * (X + Z)
+    pauli_op = SparsePauliOp.from_list([
+        ("X", 1/np.sqrt(2)),
+        ("Z", 1/np.sqrt(2)),
+    ])
+    theta = np.pi / 2
+    return pauli_op, theta
 
 def _cz_generator():
-    Z = np.array([[1,0],[0,-1]])
-    I = np.eye(2)
-    Z1 = np.kron(Z, I)
-    Z2 = np.kron(I, Z)
-    Z1Z2 = np.kron(Z, Z)
-    G = (np.kron(I,I) - Z1 - Z2 + Z1Z2)/2
+    # CZ = exp(-i * pi * ((I - Z)/2 ⊗ (I - Z)/2)) exactly
+    #     = exp(-i * pi * (II - IZ - ZI + ZZ)/4)
+    pauli_op = SparsePauliOp.from_list([
+        ("II",  1/4),
+        ("IZ", -1/4),
+        ("ZI", -1/4),
+        ("ZZ",  1/4),
+    ])
     theta = np.pi
-    return G, theta
+    return pauli_op, theta
 
 def _cnot_generator():
-    Z = np.array([[1,0],[0,-1]])
-    X = np.array([[0,1],[1,0]])
-    I = np.eye(2)
-    Z1 = np.kron(Z, I)
-    X2 = np.kron(I, X)
-    Z1X2 = np.kron(Z, X)
-    G = (np.kron(I,I) - Z1 - X2 + Z1X2)/2
-    theta = np.pi
-    return G, theta
-
-MANUAL_FIXED_GATE_GENERATORS = {
-    "Hadamard": _hadamard_generator,   # single wire
-    "CZ": _cz_generator,               # two wires
-    "CNOT": _cnot_generator,           # two wires
-    "CX": _cnot_generator,             # alias if PennyLane labels as CX
-}
+    # H = 0.5 * (I⊗I - I⊗X - Z⊗I + Z⊗X)
+    pauli_op = SparsePauliOp.from_list([
+        ("II",  1/2),
+        ("IX", -1/2),
+        ("ZI", -1/2),
+        ("ZX",  1/2),
+    ])
+    theta = np.pi / 2
+    return pauli_op, theta
 
 def get_ansatz_generators(ansatz_instance):
     """
@@ -81,17 +78,17 @@ def get_ansatz_generators(ansatz_instance):
                 print(f"Skipping parametric gate {op.name}: {e}")
             continue
         
-        # Non-parametric: check manual library
-        fn = MANUAL_FIXED_GATE_GENERATORS.get(op.name)
-        if fn is not None:
-            try:
-                if len(op.wires) == 1:
-                    gen_obs, theta = fn()
-                else:
-                    gen_obs, theta = fn()
-                results.append((gen_obs, op.wires, op.name, theta, False))
-            except Exception as e:
-                print(f"Manual generator failed for {op.name}: {e}")
-        # else ignore silently
+        # Non-parametric gates: return gate's unitary representation
+        if op.name == "CNOT":
+            G, theta = _cnot_generator()
+            results.append((G.to_matrix(), op.wires, op.name, theta, False))
+        elif op.name == "CZ":
+            G, theta = _cz_generator()
+            results.append((G.to_matrix(), op.wires, op.name, theta, False))
+        elif op.name == "Hadamard":
+            G, theta = _hadamard_generator()
+            results.append((G.to_matrix(), op.wires, op.name, theta, False))
+        else:
+            raise ValueError(f"Generator for fixed gate {op.name} not implemented.")
     
     return results
