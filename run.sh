@@ -17,5 +17,5 @@ DEPTH=$(( ($SLURM_ARRAY_TASK_ID - 1) % 5 + 1 ))
 ANSATZ_ID=$(( ($SLURM_ARRAY_TASK_ID - 1) % 19 + 1 ))
 
 echo "Running job with depth=$DEPTH, ansatz_id=$ANSATZ_ID"
-#srun python expressibility.py --depth "$DEPTH" --ansatz_id "$ANSATZ_ID"
-srun python entangling_capability.py --depth "$DEPTH" --ansatz_id "$ANSATZ_ID"
+srun python expressibility.py --depth "$DEPTH" --ansatz_id "$ANSATZ_ID"
+#srun python entangling_capability.py --depth "$DEPTH" --ansatz_id "$ANSATZ_ID"
