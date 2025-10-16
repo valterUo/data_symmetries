@@ -1,6 +1,5 @@
 import json
 import argparse
-from tqdm import tqdm
 from ansatz import Ansatz
 from utils import find_original_param, get_subgroup_unitaries, pennylane_to_qiskit
 
@@ -12,7 +11,7 @@ from twirler.generators import get_ansatz_generators
 from twirler.twirling import apply_twirling_to_generators
 
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import PauliEvolutionGate
+from qiskit.circuit.library import HamiltonianGate
 from qiskit.quantum_info import SparsePauliOp
 
 def main(depth, ansatz_id):
@@ -48,13 +47,16 @@ def main(depth, ansatz_id):
             unitaries = elem["unitaries"]
             twirled_generators = apply_twirling_to_generators(unitaries, ansatz_generators, n_qubits)
             twirled_circuit = QuantumCircuit(n_qubits)
-            for i, (gen_matrix, op_wires, op_name, theta, parametrized) in enumerate(ansatz_generators):
+            for i, (gen_matrix, op_wires, op_name, theta, is_parametric) in enumerate(ansatz_generators):
                 twirled_elem = twirled_generators[i]
                 if twirled_elem["gate_name"] == op_name and twirled_elem["wires"] == op_wires:
                     H = twirled_elem['averaged']
-                    param = find_original_param(qiskit_circuit, ansatz_generators, i, op_name, op_wires, theta)
+                    if is_parametric:
+                        param = find_original_param(qiskit_circuit, ansatz_generators, i, op_name, op_wires, theta)
+                    else:
+                        param = theta
                     pauli_op = SparsePauliOp.from_operator(H)
-                    evo_gate = PauliEvolutionGate(pauli_op, time=param)
+                    evo_gate = HamiltonianGate(pauli_op, time=param)
                     twirled_circuit.append(evo_gate, range(n_qubits))
                 else:
                     raise ValueError(f"Twirled generator for {op_name} on wires {op_wires} not found when {twirled_elem['gate_name']} and {twirled_elem['wires']}")

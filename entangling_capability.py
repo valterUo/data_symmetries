@@ -1,7 +1,6 @@
 import json
 import argparse
 
-import numpy as np
 from ansatz import Ansatz
 from utils import find_original_param, get_subgroup_unitaries, pennylane_to_qiskit
 
@@ -12,8 +11,8 @@ from twirler.symmetry_groups import create_symmetric_group
 from twirler.generators import get_ansatz_generators
 from twirler.twirling import apply_twirling_to_generators
 
-from qiskit import QuantumCircuit, transpile
-from qiskit.circuit.library import PauliEvolutionGate, UnitaryGate
+from qiskit import QuantumCircuit
+from qiskit.circuit.library import HamiltonianGate
 from qiskit.quantum_info import SparsePauliOp
 
 def main(depth, ansatz_id, n_qubits=4):
@@ -35,7 +34,6 @@ def main(depth, ansatz_id, n_qubits=4):
     circuit, params = super_ansatz.get_QNode()
     qiskit_circuit = pennylane_to_qiskit(circuit, n_qubits, params=params)
     qiskit_circuit = qiskit_circuit.remove_final_measurements(inplace=False)
-    #qiskit_circuit.draw("mpl", filename=f"original_circuit_n{n_qubits}_d{depth}_a{ansatz_id}.png")
     params = qiskit_circuit.parameters
     circuit_descriptor = CircuitDescriptor(qiskit_circuit, params)
     exp = EntanglementCapability(circuit_descriptor, samples=10000)
@@ -59,18 +57,10 @@ def main(depth, ansatz_id, n_qubits=4):
                     else:
                         param = theta
                     pauli_op = SparsePauliOp.from_operator(H)
-                    evo_gate = PauliEvolutionGate(pauli_op, time=param)
+                    evo_gate = HamiltonianGate(pauli_op, time=param)
                     twirled_circuit.append(evo_gate, range(n_qubits))
                 else:
                     raise ValueError(f"Twirled generator for {op_name} on wires {op_wires} not found when {twirled_elem['gate_name']} and {twirled_elem['wires']}")
-
-            #twirled_circuit.remove_final_measurements(inplace=True)
-            #transpiled_circuit = transpile(
-            #        twirled_circuit,
-            #        basis_gates=['rz', 'sx', 'cx', 'h', 'x', 'y', 'z', 'rx', 'ry', 'cz', 'rxx', 'rzz'],
-            #        optimization_level=3
-            #    )
-            #transpiled_circuit.draw("mpl", filename=f"twirled_circuit_n{n_qubits}_d{depth}_a{ansatz_id}_k{k}.png")
             
             params = twirled_circuit.parameters
             assert len(params) == len(qiskit_circuit.parameters), "Parameter count mismatch after twirling."

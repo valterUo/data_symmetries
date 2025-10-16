@@ -6,7 +6,9 @@ def build_qubit_permutation_unitary(perm: tuple[int, ...]) -> np.ndarray:
     """
     Return the 2^n x 2^n unitary implementing the qubit permutation 'perm',
     where perm[i] = target position of qubit i.
-    Maps |b_0 b_1 ... b_{n-1}> -> |b_{p^{-1}(0)} b_{p^{-1}(1)} ...>.
+    Given perm[i] = target position of qubit i,
+    this unitary maps |b₀ b₁ ... bₙ₋₁⟩ ↦ |b_{inv(0)} b_{inv(1)} ... b_{inv(n-1)}⟩,
+    where inv[perm[i]] = i.
     We define action so that bit originally at position i moves to position perm[i].
     """
     n = len(perm)
