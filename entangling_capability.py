@@ -7,9 +7,9 @@ from utils import find_original_param, get_subgroup_unitaries, pennylane_to_qisk
 from qleet.analyzers.entanglement import EntanglementCapability
 from qleet.interface.circuit import CircuitDescriptor
 
-from twirler.symmetry_groups import create_symmetric_group
-from twirler.generators import get_ansatz_generators
-from twirler.twirling import apply_twirling_to_generators
+from twirlator.symmetry_groups import create_symmetric_group
+from twirlator.generators import get_ansatz_generators
+from twirlator.twirling import apply_twirling_to_generators
 
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import HamiltonianGate

@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Callable, Tuple
-from twirler.symmetry_groups import SymmetryGroup
+from twirlator.symmetry_groups import SymmetryGroup
 
 def build_qubit_permutation_unitary(perm: tuple[int, ...]) -> np.ndarray:
     """
