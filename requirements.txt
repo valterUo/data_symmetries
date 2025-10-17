@@ -3,3 +3,4 @@ qiskit
 qiskit-aer
 pennylane
 pennylane-qiskit
+scienceplots
